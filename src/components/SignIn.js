@@ -1,6 +1,9 @@
+import NavBar from "./Nav";
+import Footer from "./Footer";
 export default function SignIn() {
   return (
     <>
+    <NavBar/>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
           <div class="flex flex-col justify-center">
@@ -8,7 +11,7 @@ export default function SignIn() {
               We invest in the world’s potential
             </h1>
             <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-              Here at Flowbite we focus on markets where technology, innovation,
+              Here at genZ we focus on markets where technology, innovation,
               and capital can unlock long-term value and drive economic growth.
             </p>
             <a
@@ -36,7 +39,7 @@ export default function SignIn() {
           <div>
             <div class="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
               <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-                Sign in to Flowbite
+                Sign in to genZ
               </h2>
               <form class="mt-8 space-y-6" action="#">
                 <div>
@@ -114,6 +117,7 @@ export default function SignIn() {
           </div>
         </div>
       </section>
+    <Footer/>
     </>
   );
 }

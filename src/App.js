@@ -10,13 +10,6 @@ import SignIn from "./components/SignIn";
 const App = () => {
   return (
     <Router>
-      <nav>
-        <Link to="/">Home</Link> | <Link to="/products">Products</Link> |{" "}
-        <Link to="/about">About</Link>
-      </nav>
-      <hr />
-
-      {/* Define Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
