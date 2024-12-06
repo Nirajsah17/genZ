@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import NavBar from "./Nav";
 import Footer from "./Footer";
 import ProductCard from "./ProductCard";
-import { useState } from "react";
 
 export default function Products() {
   const [products, setProducts] = useState([
@@ -93,20 +93,25 @@ export default function Products() {
   ]);
 
   return (
-    <>
-      <NavBar />
-      <div className="flex flex-wrap justify-between items-center p-1">
-        {products.map((item) => (
-          <ProductCard
-            name={item.name}
-            description={item.description}
-            price={item.price}
-            thumbnail={item.thumbnail}
-            rate={item.amount}
-          />
-        ))}
+    <div className="flex flex-col min-h-screen">
+      <NavBar className="fixed top-0 w-full z-50 bg-white dark:bg-gray-900 shadow-md" />
+      <div className="flex-grow mt-16 p-4 bg-gray-100 dark:bg-gray-800 overflow-y-auto">
+        <div className="flex flex-wrap justify-center gap-4">
+          {products.map((item, index) => (
+            <ProductCard
+              key={index}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              thumbnail={item.thumbnail}
+              rating={item.amount}
+              rate={item.amount}
+              rateType={item.rateType}
+            />
+          ))}
+        </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
