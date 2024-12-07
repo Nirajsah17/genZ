@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserProvider } from "./Context/userContext";
-import { Link } from "react-router-dom";
 
 // Import components
 import Home from "./components/Home";
 import Products from "./components/Products";
 import About from "./components/About";
 import SignIn from "./components/SignIn";
+import ProductForm from "./components/AddProduct";
 
 const App = () => {
   return (
@@ -18,6 +18,7 @@ const App = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/addProduct" element={<ProductForm />} />
         </Routes>
       </Router>
     </UserProvider>

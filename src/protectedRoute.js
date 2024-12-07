@@ -1,20 +1,22 @@
-// ProtectedRoute.js
-import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import { UserContext } from './Context/userContext';
+import React, { useContext } from "react";
+import { Route, Redirect } from "react-router-dom";
+import { UserContext } from "./Context/userContext";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { user, loading } = useContext(UserContext);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // You can replace this with a loading spinner or any other loading indicator
   }
 
-  if (!user) {
-    return <Navigate to="/signin" />;
-  }
-
-  return children;
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        user ? <Component {...props} /> : <Redirect to="/login" />
+      }
+    />
+  );
 };
 
 export default ProtectedRoute;
