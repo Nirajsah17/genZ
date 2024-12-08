@@ -1,40 +1,49 @@
-import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import NavBar from './Nav';
-import Footer from './Footer';
-import { UserContext } from '../Context/userContext';
+import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
+import NavBar from "./Nav";
+import Footer from "./Footer";
+import { UserContext } from "../Context/userContext";
 
 export default function SignIn() {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  const { login } = useContext(UserContext);
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const { user, login } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
     console.log("prevent default");
     try {
-      const response = await axios.post('https://dummyjson.com/auth/login', {
-        username: userName,
-        password: password,
-        expiresInMins: 30
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        "https://dummyjson.com/auth/login",
+        {
+          username: userName,
+          password: password,
+          expiresInMins: 30,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
       // update on based on response
-      const { accessToken, username } = response.data;
-      login(accessToken, 'admin')
-      setSuccess('Login successful!');
+      const { token, username } = response.data;
+      login(token, username);
+      setSuccess("Login successful!");
     } catch (error) {
-      setError('Login failed. Please check your credentials.');
+      setError("Login failed. Please check your credentials.");
     }
   };
+
+  if (user) {
+    return <Navigate to="/" />; // Redirect to the home page or any other page if the user is already logged in
+  }
 
   return (
     <>
@@ -46,8 +55,8 @@ export default function SignIn() {
               We invest in the world’s potential
             </h1>
             <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-              Here at genZ we focus on markets where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
+              Here at genZ we focus on markets where technology, innovation, and
+              capital can unlock long-term value and drive economic growth.
             </p>
             <a
               href="#"
@@ -76,8 +85,8 @@ export default function SignIn() {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Sign in to genZ
               </h2>
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-              {success && <p style={{ color: 'green' }}>{success}</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              {success && <p style={{ color: "green" }}>{success}</p>}
               <form className="mt-8 space-y-6" onSubmit={handleLogin}>
                 <div>
                   <label
@@ -122,7 +131,7 @@ export default function SignIn() {
                   Login to your account
                 </button>
                 <div className="text-sm font-medium text-gray-900 dark:text-white">
-                  Not registered yet?{' '}
+                  Not registered yet?{" "}
                   <a className="text-blue-600 hover:underline dark:text-blue-500">
                     Create account
                   </a>
