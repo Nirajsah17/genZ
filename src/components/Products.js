@@ -93,8 +93,7 @@ export default function Products() {
   ]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <NavBar className="fixed top-0 w-full z-50 bg-white dark:bg-gray-900 shadow-md" />
+    
       <div className="flex-grow mt-16 p-4 bg-gray-100 dark:bg-gray-800 overflow-y-auto">
         <div className="flex flex-wrap justify-center gap-4">
           {products.map((item, index) => (
@@ -110,8 +109,5 @@ export default function Products() {
             />
           ))}
         </div>
-      </div>
-      <Footer />
-    </div>
   );
 }

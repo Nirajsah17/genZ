@@ -10,6 +10,7 @@ import About from "./components/About";
 import SignIn from "./components/SignIn";
 import ProductForm from "./components/AddProduct";
 import UserList from "./components/UserList";
+import DashBoard from "./components/Dashboard"
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<DashBoard />} />
           <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<SignIn />} />
