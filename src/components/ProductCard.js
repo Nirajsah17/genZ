@@ -1,67 +1,39 @@
 export default function ProductCard({
+  index,
   name,
   description,
-  price,
-  thumbnail,
-  rating,
-  rate,
-  rateType,
+  pricePerUnit,
+  unit,
+  stockQuantity,
+  totalQuantity,
+  onDetail, 
+  onUpdate
 }) {
-  // Function to render stars based on rating
-  const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(
-        <svg
-          key={i}
-          className={`w-4 h-4 ${i < rating ? 'text-yellow-300' : 'text-gray-200 dark:text-gray-600'}`}
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 22 20"
-        >
-          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-        </svg>
-      );
-    }
-    return stars;
-  };
-
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-        <img
-          className="p-8 rounded-t-lg"
-          src={thumbnail}
-          alt={`${name} product image`}
-        />
-      </a>
-      <div className="px-5 pb-5">
-        <a href="#">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {name}
-          </h5>
-        </a>
-        <p className="text-gray-700 dark:text-gray-400 mt-2">{description}</p>
-        <div className="flex items-center mt-2.5 mb-5">
-          <div className="flex items-center space-x-1 rtl:space-x-reverse">
-            {renderStars(rating)}
-          </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-            {rate} | {rateType}
-          </span>
+    <div class="flex w-full max-w-sm flex-col items-center justify-center rounded-lg border border-gray-300 bg-slate-800 p-6 text-white shadow-lg" id={index}>
+      <div class="mb-2 text-xl font-bold">{name}</div>
+      <div class="mb-4 text-sm">{description}</div>
+      <div class="w-full space-y-2">
+        <div class="flex justify-between text-sm">
+          <span class="font-medium text-gray-500">Price Per Unit:</span>
+          <span class="">{pricePerUnit}</span>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900 dark:text-white">
-            ${price}
-          </span>
-          <a
-            href="#"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Add to cart
-          </a>
+        <div class="flex justify-between text-sm">
+          <span class="font-medium text-gray-500">Unit:</span>
+          <span class="">{unit}</span>
         </div>
+        <div class="flex justify-between text-sm">
+          <span class="font-medium text-gray-500">Stock Quantity:</span>
+          <span class="">{stockQuantity}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="font-medium text-gray-500">Total Quantity:</span>
+          <span class="">{totalQuantity}</span>
+        </div>
+      </div>
+      <div class="mt-4 flex space-x-4">
+        <button class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700" onClick={()=>onUpdate(index)}>Update</button>
+        <button class="rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700" onClick={()=> onDetail(index)}>Details</button>
       </div>
     </div>
   );

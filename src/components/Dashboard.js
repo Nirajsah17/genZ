@@ -8,15 +8,14 @@ export default function DashBoard() {
 
   const [activeTab, setActiveTab] = useState('User');
 
-  const tabs = [
-    {title: 'User', component: <UserList/>},
-    {title: 'Products', component: <Products/>},
-    {title: 'Profile', component: ''},
-    ] 
+  const tabs = {
+    'User': <UserList/>,
+    'Products': <Products/>,
+    'Profile': <h1>Profile Page</h1>
   }
 
-  const handleTabSwitch = (e)=>{
-
+  const handleTabSwitch = (tabName)=>{
+    setActiveTab(tabName)
   }
 
   return (
@@ -29,10 +28,11 @@ export default function DashBoard() {
         <button className="p-2 hover:bg-slate-600" onClick={()=>handleTabSwitch('Profile')}>Profile</button>
       </div>
       <div className="w-full">
-        {tabs[activeTab].component}
+        {tabs[activeTab]}
       </div>
     </div>
     </div>
+
   );
 }
 
